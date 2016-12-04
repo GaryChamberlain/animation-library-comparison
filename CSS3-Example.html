@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <style>
+        html,body {
+            margin:0;
+            overflow:hidden;
+        }
+        div.canvas {
+            border-radius: 150px;
+            background: #222;
+            width: 300px;
+            height: 300px;
+            transform-origin: 50% 50%;
+            animation-name: ballRotate; 
+            animation-duration: 8s; 
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes ballRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to { 
+                transform: rotate(360deg);
+            }
+        }
+
+        div.ball {
+            position:relative;
+            background: #9b2;
+            width:120px;
+            height:120px;
+            border-radius:60px;
+            top: 90px;
+            left: 0px;
+            animation-name: ballSlide;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes ballSlide {
+            0% {
+                left: 180px;
+                animation-timing-function: cubic-bezier(0.470,  0.000, 0.745, 0.715);                
+            }
+            50% {
+                left: 90px;
+                animation-timing-function: cubic-bezier(0.390,  0.575, 0.565, 1.000);
+            }
+            100% {
+                left: 0px;
+                
+            }
+        }
+    </style>
+
+</head>
+<body><div class="canvas" id="demoCanvas" width="300" height="300"><div class="ball"></div></div></body>
+</html>
