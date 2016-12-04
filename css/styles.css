@@ -184,7 +184,7 @@ h1 {
 
 h2 {
   font-size: 1.5em;
-  margin: 0.83em 0;
+  margin: 3em 0 0.8em 0;
 }
 
 h3 {
@@ -546,7 +546,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #e8e8e8;
-  margin: 0 0 10px;
   font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
@@ -565,7 +564,7 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 h4, h5, h6 {
