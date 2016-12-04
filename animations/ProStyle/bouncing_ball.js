@@ -34,6 +34,7 @@ ProStyle.Stories.bouncing_ball = {
     controllers: [
         { controllerType: "auto", start: true, stepAdvance: true, restart: true },
         { controllerType: "track", color: "#9b2" },
-        { controllerType: "resize" }
+        { controllerType: "resize" },
+        { controllerType: "mouseWheel" }
     ]
 };
