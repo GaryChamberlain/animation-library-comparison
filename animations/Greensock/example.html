@@ -26,11 +26,8 @@
     </style>
     <script>
     function init() {
-        W = H = 300;
+        W = 300;
         R = 60;
-        X1 = 0 + R;
-        X2 = W - R;
-        Y1 = Y2 = H/2;  
 
         TweenMax.to("#ball", 1, {left: (W - 2 * R) + 'px', repeat:-1, yoyo:true, ease:Sine.easeInOut});
 

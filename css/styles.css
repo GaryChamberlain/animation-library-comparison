@@ -561,6 +561,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 28px;
+  margin: 0;
 }
 
 h2 {
@@ -681,11 +682,12 @@ td {
 }
 
 hr {
-  border: 0;
-  outline: none;
-  height: 3px;
-  background: transparent url("../images/hr.gif") center center repeat-x;
-  margin: 0 0 20px;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3px solid #9b2;
+    margin: 0.5em 0 2em 0;
+    padding: 0; 
 }
 
 dt {
