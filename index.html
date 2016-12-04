@@ -42,6 +42,24 @@
       <p>I wanted a simple animation so that the examples are easy to read and understand.  However, I didn't want it to be so tedious as to not be interesting.
         It glides a ball back and forth on the X axis, using SIN wave easing, over two seconds.  Simultaneously, the ball is in a container that is steadily rotating clock-wise at one revolution every eight seconds. This emits a pleasing, albeit simple, spiral pattern.</p><br><br>
 
+
+      <h3>Apples and Oranges</h3>
+
+      <p>To be fair, while I did implement my simple animation using each of these technologies, they are not fully comparable.
+        There are different features and each is designed with specific use cases in mind.</p>
+      
+      <p>For example, <a href="http://localhost:8080/animations/CSS3">CSS3 animations</a> simply manipulate DOM or SVG element properties, but don't directly provide a rendering platform.
+      I chose to implement this example using DOM.</p>
+
+      
+
+      <p><a href="http://localhost:8080/animations/CSS3">Pixi</a>, on the otherhand, provides core rendering primitives and abstracts away the rendering capabilities of the device.
+        If the device supports WebGL it uses it. Otherwise it draws on a Canvas element.
+        Pixi doesn't support higher-level concepts, like tweening and easing.
+        I had to use a thord-party add-on for that.</p>
+      
+      
+
       <h3>And here we go...</h3>
 
       
