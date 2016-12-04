@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../../css/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="../../js/respond.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushHtml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" />
+    <link rel="stylesheet" href="../../css/shThemeDjango.css" />
+
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -40,13 +48,113 @@
 
 
 
-      <h3><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h3>
+      <h2><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h2>
 
       <p>Notes go here.</p>
 
-      <h3><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
 
-      <p>Source code.</p>
+
+
+
+      <h2><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h2>
+
+            <h3>HTML</h3>
+      <script type="syntaxhighlighter" class="brush: css"><![CDATA[
+        <body onload="init();"></body>
+]]></script>
+
+      <h3>JS</h3>
+      <script type="syntaxhighlighter" class="brush: js"><![CDATA[
+        function init() {
+          
+            W = H = 300;
+            R = 60;
+
+            //
+            // autoDetectRenderer will choose WebGL if available or fall back to Canvas
+            //
+            var renderer = PIXI.autoDetectRenderer(W, H, {antialias: false, transparent: false, resolution: 1});
+            renderer.backgroundColor = 0x222222;
+
+            document.body.appendChild(renderer.view);
+            var stage = new PIXI.Container();
+            renderer.render(stage);
+
+            //
+            // First create a green circle as a sprite from a texture
+            //
+            var circleTexture = new PIXI.Graphics()
+                .beginFill(0x99bb22)
+                .drawCircle(R, R, R)
+                //.drawRect(0,0,R,R)
+                .endFill()
+                .generateTexture();
+
+            var circle = new PIXI.Sprite(circleTexture);
+            circle.anchor.set(0.5);
+
+
+
+            var container = new PIXI.Container();
+            container.pivot.x = W/2;
+            container.pivot.y = H/2;
+            container.x = W/2;
+            container.y = H/2;
+
+            container.addChild(circle);
+
+
+            stage.addChild(container);
+
+            //
+            // Tween to rotate the container
+            //
+            var tweenRotate = PIXI.tweenManager.createTween(container);
+
+            var ROTATE_TIME = 8000;
+            function startRotating(){
+                container.rotation = 0;
+                tweenRotate.stop().clear();
+                tweenRotate.time = ROTATE_TIME;
+                tweenRotate.easing = PIXI.tween.Easing.linear();
+                tweenRotate.from({ rotation: 0 });
+                tweenRotate.to({ rotation: Math.PI * 2});
+                tweenRotate.loop = true;
+                tweenRotate.start();
+            }
+
+
+            //
+            // Tween to slide the circle back and forth
+            //
+            var tweenSlide = PIXI.tweenManager.createTween(circle);
+
+            var SLIDE_TIME = 2000;
+            function startSliding(){
+                circle.position.set(0, H/2);
+                tweenSlide.stop().clear();
+                tweenSlide.time = SLIDE_TIME;
+                tweenSlide.pingPong = true;
+                tweenSlide.easing = PIXI.tween.Easing.inOutSine();
+                tweenSlide.from({ x: R });
+                tweenSlide.to({ x: W - R });
+                tweenSlide.loop = true;
+                tweenSlide.start();
+            }
+
+
+            startSliding();
+            startRotating();
+            animate();
+
+            var raf;
+            function animate(){
+                raf = window.requestAnimationFrame(animate);
+                renderer.render(stage);
+                PIXI.tweenManager.update();
+            }
+        }
+]]></script>
 
       
 
@@ -59,5 +167,8 @@
       </section></div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
   </body>
 </html>

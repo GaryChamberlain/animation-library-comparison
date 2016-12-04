@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../../css/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="../../js/respond.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushHtml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" />
+    <link rel="stylesheet" href="../../css/shThemeDjango.css" />
+
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -44,10 +52,52 @@
 
       <p>Notes go here.</p>
 
-      <h3><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
+      <h2><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h2>
 
-      <p>Source code.</p>
+      <h3>HTML</h3>
+      <script type="syntaxhighlighter" class="brush: css"><![CDATA[
+        <body onload="init();">
+          <canvas id="canvas" width="300" height="300"></canvas>
+        </body>
+]]></script>
 
+      <h3>JS</h3>
+      <script type="syntaxhighlighter" class="brush: js"><![CDATA[
+      function init() {
+
+        W = H = 300;
+        R = 60;
+
+        var stage = new createjs.Stage("canvas");
+
+        var container = new createjs.Container();
+        container.regX = W/2;
+        container.regY = H/2;
+        container.x = W/2;
+        container.y = H/2;
+        stage.addChild(container);
+
+        var circle = new createjs.Shape();
+        circle.graphics
+              .beginFill("#9b2")
+              .drawCircle(0, 0, R);
+              
+        circle.x = 0 + R;
+        circle.y = H/2;
+        
+        container.addChild(circle);
+
+        createjs.Tween.get(circle, { loop: true })
+            .to({ x: W-R, y: H/2 }, 1000, createjs.Ease.sineInOut)
+            .to({ x: R, y: H/2 }, 1000, createjs.Ease.sineInOut);
+        
+        createjs.Tween.get(container, { loop: true })
+            .to({ rotation: 360 }, 8000, createjs.Ease.none);
+
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener("tick", stage);
+    }
+]]></script>
       
 
 
@@ -59,5 +109,8 @@
       </section></div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
   </body>
 </html>

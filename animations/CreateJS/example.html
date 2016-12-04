@@ -12,11 +12,8 @@
     function init() {
         W = H = 300;
         R = 60;
-        X1 = 0 + R;
-        X2 = W - R;
-        Y1 = Y2 = H/2;  
 
-        var stage = new createjs.Stage("demoCanvas");
+        var stage = new createjs.Stage("canvas");
 
         var container = new createjs.Container();
         container.regX = W/2;
@@ -26,14 +23,17 @@
         stage.addChild(container);
 
         var circle = new createjs.Shape();
-        circle.graphics.beginFill("#9b2").drawCircle(0, 0, R);
+        circle.graphics
+              .beginFill("#9b2")
+              .drawCircle(0, 0, R);
         circle.x = 0 + R;
         circle.y = H/2;
+        
         container.addChild(circle);
 
         createjs.Tween.get(circle, { loop: true })
-            .to({ x: X2, y: Y2 }, 1000, createjs.Ease.sineInOut)
-            .to({ x: X1, y: Y1 }, 1000, createjs.Ease.sineInOut);
+            .to({ x: W-R, y: H/2 }, 1000, createjs.Ease.sineInOut)
+            .to({ x: R, y: H/2 }, 1000, createjs.Ease.sineInOut);
         
         createjs.Tween.get(container, { loop: true })
             .to({ rotation: 360 }, 8000, createjs.Ease.none);
@@ -47,5 +47,5 @@
     <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
 
 </head>
-<body onload="init();"><canvas id="demoCanvas" width="300" height="300"></canvas></body>
+<body onload="init();"><canvas id="canvas" width="300" height="300"></canvas></body>
 </html>

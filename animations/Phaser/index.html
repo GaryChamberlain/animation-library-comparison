@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="../../css/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="../../js/respond.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushHtml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCss.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" />
+    <link rel="stylesheet" href="../../css/shThemeDjango.css" />
+
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -40,13 +48,56 @@
 
 
 
-      <h3><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h3>
+      <h2><a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h2>
 
       <p>Notes go here.</p>
 
-      <h3><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
 
-      <p>Source code.</p>
+
+
+
+      <h2><a id="source" class="anchor" href="#source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h2>
+
+            <h3>HTML</h3>
+      <script type="syntaxhighlighter" class="brush: css"><![CDATA[
+        <body onload="init();">
+          <div id="phaser-canvas"></div>
+        </body>
+]]></script>
+
+      <h3>JS</h3>
+      <script type="syntaxhighlighter" class="brush: js"><![CDATA[
+        function init() {
+            W = H = 300;
+            R = 60;
+
+            var game = new Phaser.Game(W, H, Phaser.AUTO, 'phaser-canvas', {create:create});
+
+            function create() {
+                game.stage.backgroundColor = 0x222222;
+
+                //Create a container with the top-left point in the center of the canvas
+                let container = game.add.group();
+                container.x = W/2;
+                container.y = H/2;
+
+                //Create a green circle
+                let circle = game.add.graphics(0,0)
+                    .beginFill(0x99bb22, 1)
+                    .drawCircle(0, 0, 2 * R);
+                
+                circle.x = -W/2 + R;
+
+                container.addChild(circle);
+
+                game.add.tween(circle)
+                        .to({ x: W/2 - R }, 1000, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
+
+                game.add.tween(container)
+                        .to({ rotation: Math.PI * 2 }, 8000, Phaser.Easing.Linear.None, true, 0, -1, false);
+            }
+        }
+]]></script>
 
       
 
@@ -59,5 +110,8 @@
       </section></div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
   </body>
 </html>
