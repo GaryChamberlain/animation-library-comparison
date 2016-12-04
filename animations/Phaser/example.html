@@ -21,30 +21,26 @@
         function create() {
             game.stage.backgroundColor = 0x222222;
 
+            //Create a container with the top-left point in the center of the canvas
             let container = game.add.group();
-            
+            container.x = W/2;
+            container.y = H/2;
 
+            //Create a green circle
             let circle = game.add.graphics(0,0)
                 .beginFill(0x99bb22, 1)
-                .drawCircle(R, H/2, 2 * R);
-
-            let slidingTween = game.add.tween(circle)
-                                .to({ x: W - 2 * R }, 2000, Phaser.Easing.Sinusoidal.InOut)
-                                .yoyo(true)
-                                //.repeat(-1)
-                                .start();
-
-            //slidingTween.onComplete.add(() => slidingTween.start());
+                .drawCircle(0, 0, 2 * R);
+            
+            circle.x = -W/2 + R;
 
             container.addChild(circle);
 
-            let rotatingTween = game.add.tween(container)
-                                .from({ rotation: 0 })
-                                .to({ rotation: Math.PI * 2 }, 500)
-                                .repeat(1)
-                                .start();
 
-            rotatingTween.onComplete.add(() => rotatingTween.start());
+            game.add.tween(circle)
+                    .to({ x: W/2 - R }, 1000, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
+
+            game.add.tween(container)
+                    .to({ rotation: Math.PI * 2 }, 8000, Phaser.Easing.Linear.None, true, 0, -1, false);
         }
     }
     </script>
