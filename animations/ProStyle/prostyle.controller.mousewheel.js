@@ -1,16 +1,3 @@
-/*!
- * VERSION: 1.2.0
- * DATE: 29-Sep-2015
- * UPDATES AND DOCS AT: https://prostyle.io/plus/
- * 
- * This file is part of ProStyle Plus, a set of premium extensions for ProStyle.
- * 
- * @copyright - Copyright (c) 2013-2015, Pro Graphics, Inc. All rights reserved. 
- * @license - This work is subject to the terms at https://prostyle.io/plus/
- * @author: Gary Chamberlain, gary@pro.graphics.
- * 
- **/
-
 /// <reference path="../../../ts/prostyle.d.ts" />
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -623,7 +610,6 @@ var ProStyle;
             var MouseWheel;
             (function (MouseWheel) {
                 function deserialize(json) {
-                    Extensions.c();
                     return new MouseWheel.MouseWheelController();
                 }
                 MouseWheel.deserialize = deserialize;
