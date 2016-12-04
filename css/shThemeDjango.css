@@ -17,7 +17,7 @@
 .syntaxhighlighter {
   background-color: #222 !important;
   border: solid 3px #202020 !important;
-  overflow: hidden !important;
+  overflow-y: hidden !important;
 }
 .syntaxhighlighter .line.alt1 {
   background-color: #222 !important;
@@ -30,6 +30,9 @@
 }
 .syntaxhighlighter .line.highlighted.number {
   color: white !important;
+}
+.syntaxhighlighter table {
+  margin: 0.3em !important;
 }
 .syntaxhighlighter table caption {
   color: #f8f8f8 !important;
